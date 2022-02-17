@@ -1,0 +1,45 @@
+# yam 配置
+version: '3.7'
+services:
+  nginx:
+    # 镜像生成文件
+    build: ./nginx
+    # 镜像名称
+    image: natural/nginx
+    # 容器名称
+    container_name: natural-nginx
+    # DOCKER 进程重启时重启容器
+    restart: always
+    # 端口
+    ports:
+      - "${PORT}:80"
+    # 容器依赖
+    depends_on:
+      - php
+    # 目录映射
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
+      - ./nginx/log:/var/log/nginx
+      - ./hosts:/etc/hosts
+      - ./www:/www
+  php:
+    build: ./php
+    image: natural/php
+    container_name: natural-php
+    restart: always
+    volumes:
+      - ./www:/www
+  mysql:
+    build: ./mysql
+    image: natural/mysql
+    container_name: natural-mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ONETIME_PASSWORD={MYSQL_ONETIME_PASSWORD}
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/log:/var/log/mysql
