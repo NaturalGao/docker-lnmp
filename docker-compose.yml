@@ -43,3 +43,12 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/log:/var/log/mysql
+  redis:
+    build: ./redis
+    image: natural/redis
+    container_name: natural-redis
+    restart: always
+    volumes:
+      - ./redis/data:/data
+      - ./redis/log:/var/log/redis
+

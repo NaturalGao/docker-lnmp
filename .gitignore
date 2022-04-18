@@ -1,2 +1,5 @@
 /mysql/data
 /nginx/log
+/redis/data
+/redis/log
+/hosts
