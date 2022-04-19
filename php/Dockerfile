@@ -1,4 +1,4 @@
-FROM php:8.1-fpm
+FROM php:8.0-fpm
 
 RUN apt-get clean
 RUN apt-get update
@@ -9,7 +9,9 @@ RUN apt-get install -y \
     curl \
     net-tools \
     iputils-ping \
-    procps
+    procps \ 
+    git \
+    netplan.io 
 
 #   安装 REDIS/XDEBUG
 
@@ -22,4 +24,5 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 # 添加自定义配置文件
 COPY ./config/php.ini $PHP_INI_DIR/conf.d/php.ini
 
-WORKDIR /var/www
+# 指定工作目录
+WORKDIR /www
