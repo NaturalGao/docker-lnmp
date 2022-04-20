@@ -11,12 +11,16 @@ RUN apt-get install -y \
     iputils-ping \
     procps \ 
     git \
-    netplan.io 
+    netplan.io \
+    zlib1g-dev  \
+    libzip-dev  \
+    unzip \
+    php8.0-zip
 
 #   安装 REDIS/XDEBUG
-
 RUN pecl install redis
 RUN docker-php-ext-enable redis
+RUN docker-php-ext-install zip
 
 #   使用镜像中的生产环境 php.ini 配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
