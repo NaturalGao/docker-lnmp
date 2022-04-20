@@ -3,3 +3,5 @@
 /redis/data
 /redis/log
 /hosts
+/www/
+!/www/index.php
