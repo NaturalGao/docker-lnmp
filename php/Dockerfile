@@ -14,8 +14,7 @@ RUN apt-get install -y \
     netplan.io \
     zlib1g-dev  \
     libzip-dev  \
-    unzip \
-    php8.0-zip
+    unzip
 
 #   安装 REDIS/XDEBUG
 RUN pecl install redis
