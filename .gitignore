@@ -5,3 +5,5 @@
 /hosts
 /www/
 !/www/index.php
+/nginx/config/
+!/nginx/config/localhost.conf
