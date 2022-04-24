@@ -1,11 +1,10 @@
 network:
-    version: 2
-    renderer: networkd
-    ethernets:
-        ens3:
-            dhcp4: no
-            addresses:
-                - 172.23.0.2/24
-            gateway4: 172.23.0.1
-            nameservers:
-                addresses: [8.8.8.8, 1.1.1.1]
+  ethernets:
+    eth0:     #配置的网卡的名称
+      addresses: [172.20.0.5/16]    #配置的静态ip地址和掩码
+      dhcp4: no    #关闭DHCP，如果需要打开DHCP则写yes
+      optional: true
+      gateway4: 172.20.0.1    #网关地址
+      nameservers:
+         addresses: [114.114.114.114]    #DNS服务器地址，多个DNS服务器地址需要用英文逗号分隔开
+  version: 2

@@ -1,5 +1,11 @@
 # yam 配置
 version: '3.7'
+networks:
+  fixed:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/24"
 services:
   nginx:
     # 镜像生成文件
@@ -8,6 +14,10 @@ services:
     image: natural/nginx
     # 容器名称
     container_name: natural-nginx
+    # ip
+    networks:
+      fixed:
+        ipv4_address: "172.20.0.10"
     # DOCKER 进程重启时重启容器
     restart: always
     # 端口
@@ -26,6 +36,9 @@ services:
     build: ./php
     image: natural/php
     container_name: natural-php
+    networks:
+      fixed:
+        ipv4_address: "172.20.0.3"
     restart: always
     volumes:
       - ./www:/www
@@ -33,6 +46,9 @@ services:
     build: ./mysql
     image: natural/mysql
     container_name: natural-mysql
+    networks:
+      fixed:
+        ipv4_address: "172.20.0.2"
     restart: always
     ports:
       - "${MYSQL_PORT}:3306"
@@ -49,6 +65,9 @@ services:
     build: ./redis
     image: natural/redis
     container_name: natural-redis
+    networks:
+      fixed:
+        ipv4_address: "172.20.0.11"
     restart: always
     ports:
       - "${REDIS_PORT}:6379"
