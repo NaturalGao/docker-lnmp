@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 RUN apt-get clean
 RUN apt-get update
@@ -21,6 +21,8 @@ RUN pecl install redis
 RUN docker-php-ext-enable redis
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install gd
 
 #   使用镜像中的生产环境 php.ini 配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
