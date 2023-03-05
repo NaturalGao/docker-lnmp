@@ -22,7 +22,7 @@ RUN docker-php-ext-enable redis
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install bcmath
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install mysqli
 
 #   使用镜像中的生产环境 php.ini 配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
