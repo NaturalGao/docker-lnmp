@@ -10,7 +10,7 @@ services:
   nginx:
     # 镜像生成文件
     build: ./nginx
-    # 镜像名称
+    # 镜像名称`
     image: natural/nginx
     # 容器名称
     container_name: natural-nginx
